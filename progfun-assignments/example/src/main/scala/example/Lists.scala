@@ -25,7 +25,7 @@ object Lists {
    */
   def sum(xs: List[Int]): Int =
     if (xs.isEmpty) {
-      throw new IllegalArgumentException
+      0
     } else {
       if (xs.tail.isEmpty) {
         xs.head
@@ -49,7 +49,7 @@ object Lists {
    */
   def max(xs: List[Int]): Int =
     if (xs.isEmpty) {
-      throw new IllegalArgumentException
+      throw new NoSuchElementException
     } else {
       if (xs.tail.isEmpty) {
         xs.head

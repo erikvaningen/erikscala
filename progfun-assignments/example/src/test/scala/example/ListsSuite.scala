@@ -122,9 +122,7 @@ class ListsSuite extends FunSuite {
   }
 
   test("sum of an empty list") {
-    intercept[IllegalArgumentException] {
-      sum(List())
-    }
+    assert(sum(List()) === 0)
   }
 
     test("sum with repeates elements") {
@@ -144,8 +142,9 @@ class ListsSuite extends FunSuite {
   test("max with zeros") {
     assert(max(List(0, 0, 0)) === 0)
   }
-  test("max with empty list") {
-    intercept[IllegalArgumentException] {
+  
+  test("no max in empty list") {
+    intercept[NoSuchElementException] {
       max(List())
     }
   }
