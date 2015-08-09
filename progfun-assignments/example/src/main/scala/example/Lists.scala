@@ -45,13 +45,15 @@ object Lists {
    */
   def max(xs: List[Int]): Int =
     if (xs.isEmpty) {
-      0
+      throw new IllegalArgumentException
     } else {
-      def m = max(xs.tail)
-      if (xs.head > m) {
-        xs.head
-      } else {
-        m
-      }
+      if (!xs.tail.isEmpty) {
+        def m = max(xs.tail)
+        if (xs.head > m) {
+          xs.head
+        } else {
+          m
+        }
+      } else { xs.head }
     }
 }

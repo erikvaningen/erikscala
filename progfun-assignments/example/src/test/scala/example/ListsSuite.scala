@@ -125,7 +125,9 @@ class ListsSuite extends FunSuite {
     assert(max(List(0, 0, 0)) === 0)
   }
   test("with empty list") {
-    assert(max(List()) === 0)
+    intercept[IllegalArgumentException] {
+      max(List())
+    }
   }
   test("with repeates elements") {
     assert(max(List(4, 4, 4, 4)) === 4)
