@@ -113,23 +113,43 @@ class ListsSuite extends FunSuite {
     assert(sum(List(1, 2, 0)) === 3)
   }
 
+  test("sum with negative numbers") {
+    assert(sum(List(-1, 2, 2)) === 3)
+  }
+
+  test("sum with zeros") {
+    assert(sum(List(0, 0, 0)) === 0)
+  }
+
+  test("sum of an empty list") {
+    intercept[IllegalArgumentException] {
+      sum(List())
+    }
+  }
+
+    test("sum with repeates elements") {
+    assert(sum(List(4, 4, 4, 4)) === 16)
+  }
+
+  
+  
   test("max of a few numbers") {
     assert(max(List(3, 7, 2)) === 7)
   }
 
-  test("with negative numbers") {
+  test("max with negative numbers") {
     assert(max(List(-1, 2, 2)) === 2)
   }
 
-  test("with zeros") {
+  test("max with zeros") {
     assert(max(List(0, 0, 0)) === 0)
   }
-  test("with empty list") {
+  test("max with empty list") {
     intercept[IllegalArgumentException] {
       max(List())
     }
   }
-  test("with repeates elements") {
+  test("max with repeates elements") {
     assert(max(List(4, 4, 4, 4)) === 4)
   }
 

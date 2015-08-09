@@ -25,9 +25,13 @@ object Lists {
    */
   def sum(xs: List[Int]): Int =
     if (xs.isEmpty) {
-      0
+      throw new IllegalArgumentException
     } else {
-      xs.head + sum(xs.tail)
+      if (xs.tail.isEmpty) {
+        xs.head
+      } else {
+        xs.head + sum(xs.tail)
+      }
     }
 
   /**
@@ -47,13 +51,15 @@ object Lists {
     if (xs.isEmpty) {
       throw new IllegalArgumentException
     } else {
-      if (!xs.tail.isEmpty) {
+      if (xs.tail.isEmpty) {
+        xs.head
+      } else {
         def m = max(xs.tail)
         if (xs.head > m) {
           xs.head
         } else {
           m
         }
-      } else { xs.head }
+      }
     }
 }
