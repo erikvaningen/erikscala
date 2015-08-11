@@ -14,7 +14,13 @@ object Main {
   /**
    * Exercise 1
    */
-  def pascal(c: Int, r: Int): Int = ???
+  def pascal(c: Int, r: Int): Int = {
+    // precondition
+    if (c < 0 || r < 0) throw new IllegalArgumentException
+    //  logic
+    if (c == 0 || r == 0 || r == c) 1 else pascal(c - 1, r - 1) + pascal(c, r - 1)
+
+  }
 
   /**
    * Exercise 2
