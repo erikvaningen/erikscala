@@ -2,7 +2,7 @@ name <<= submitProjectName(pname => "progfun-"+ pname)
 
 version := "1.0.0"
 
-scalaVersion := "2.11.5"
+scalaVersion := "2.10.4"
 
 scalacOptions ++= Seq("-deprecation", "-feature")
 
@@ -14,36 +14,33 @@ libraryDependencies += "junit" % "junit" % "4.10" % "test"
 // handout, the 'createHandout' task will make sure that its value is correct.
 submitProjectName := "recfun"
 
-libraryDependencies ++= {
-  val c = currentProject.value
+libraryDependencies <++= (currentProject) { c =>
   if (c.isEmpty || c == "quickcheck") Seq(
-    "org.scalacheck" %% "scalacheck" % "1.12.1"
+    "org.scalacheck" %% "scalacheck" % "1.10.1"
   )
   else Seq.empty
 }
 
-libraryDependencies ++= {
-  val c = currentProject.value
+libraryDependencies <++= (currentProject) { c =>
   if (c.isEmpty || c == "nodescala" || c == "suggestions") Seq(
     "com.netflix.rxjava" % "rxjava-scala" % "0.15.0",
-    "org.json4s" %% "json4s-native" % "3.2.11",
-    "org.scala-lang.modules" %% "scala-swing" % "1.0.1",
-    "net.databinder.dispatch" %% "dispatch-core" % "0.11.0",
-    "org.scala-lang" % "scala-reflect" % scalaVersion.value,
+    "org.json4s" % "json4s-native_2.10" % "3.2.5",
+    "org.scala-lang" % "scala-swing" % "2.10.3",
+    "net.databinder.dispatch" % "dispatch-core_2.10" % "0.11.0",
+    "org.scala-lang" % "scala-reflect" % "2.10.3",
     "org.slf4j" % "slf4j-api" % "1.7.5",
     "org.slf4j" % "slf4j-simple" % "1.7.5",
     "com.squareup.retrofit" % "retrofit" % "1.0.0",
-    "org.scala-lang.modules" %% "scala-async" % "0.9.2"
-  )
+    "org.scala-lang.modules" %% "scala-async" % "0.9.0-M2"
+     )
   else Seq.empty
 }
 
-libraryDependencies ++= {
-  val c = currentProject.value
+libraryDependencies <++= (currentProject) { c =>
   if (c.isEmpty || c == "actorbintree" || c == "kvstore") Seq(
-    "com.typesafe.akka" %% "akka-actor" % "2.3.9",
-    "com.typesafe.akka" %% "akka-testkit" % "2.3.9"
-  )
+    "com.typesafe.akka" %% "akka-actor" % "2.2.3",
+    "com.typesafe.akka" %% "akka-testkit" % "2.2.3"
+    )
   else Seq.empty
 }
 
@@ -51,7 +48,7 @@ libraryDependencies ++= {
   val c = currentProject.value
   if (c.isEmpty || parProgProjects(c)) Seq(
     "com.storm-enroute" %% "scalameter-core" % "0.6",
-    "com.github.scala-blitz" %% "scala-blitz" % "1.1",
+    "com.github.scala-blitz" % "scala-blitz_2.11" % "1.1",
     "com.storm-enroute" %% "scalameter" % "0.6" % "test"
   )
   else Seq.empty
