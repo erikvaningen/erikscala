@@ -25,7 +25,15 @@ object Main {
   /**
    * Exercise 2
    */
-  def balance(chars: List[Char]): Boolean = ???
+
+  def balance(chars: List[Char]): Boolean = {
+    // precondition
+    if (chars == null) throw new IllegalArgumentException
+    //  logic
+
+    true
+
+  }
 
   /**
    * Exercise 3
