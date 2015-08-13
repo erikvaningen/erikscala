@@ -3,7 +3,6 @@ package recfun
 object ErikBalance {
   println("Welcome to the Scala worksheet")       //> Welcome to the Scala worksheet
 
-
   def charClean(one: Char): Boolean = one == '(' || one == ')'
                                                   //> charClean: (one: Char)Boolean
 
@@ -29,6 +28,8 @@ object ErikBalance {
   println(cutCouple(clean("fdsfds()fdhsjkfsd".toList)).length)
                                                   //> 2
   println(balance("fdsfds()fdhs(jkf)sd".toList))  //> true
- println(balance("".toList))                      //> true
+  println(balance("".toList))                     //> true
+  println(" \n ".toList.length)                   //> 3
+ println(clean("\n".toList).length)               //> 0
 
 }

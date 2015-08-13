@@ -41,7 +41,7 @@ object Main {
 
     def cutCouple(chars: List[Char]): List[Char] = if (chars.length <= 2) chars else if (isCouple(getFirst2(chars))) cutCouple(chars.tail.tail) else chars.head :: cutCouple(chars.tail)
 
-    chars.isEmpty || cutCouple(clean(chars)).length == 2
+    chars.isEmpty || (cutCouple(clean(chars)).length == 2 && isCouple(cutCouple(clean(chars))))
   }
 
   /**
