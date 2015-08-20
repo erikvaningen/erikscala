@@ -18,18 +18,19 @@ object ErikBalance {
   def cutCouple(chars: List[Char]): List[Char] = if (chars.length <= 2) chars else if (isCouple(getFirst2(chars))) cutCouple(chars.tail.tail) else chars.head :: cutCouple(chars.tail)
                                                   //> cutCouple: (chars: List[Char])List[Char]
 
-  def balance(chars: List[Char]): Boolean = chars.isEmpty || cutCouple(clean(chars)).length == 2
-                                                  //> balance: (chars: List[Char])Boolean
+  println(clean("fd\nsfdsfdhsjkfsd".toList).length)
+                                                  //> 0
+  println("\n".length)                            //> 1
 
-  println(cutCouple("(())".toList).length)        //> 2
-  println(cutCouple("()(())".toList).length)      //> 2
-  println(cutCouple(")(()(())".toList).length)    //> 4
-  println(cutCouple(")(()(fdf())".toList).length) //> 7
+  println(cutCouple(clean("fd\nsfds()fdhsjkfsd".toList)).length)
+                                                  //> 2
+
   println(cutCouple(clean("fdsfds()fdhsjkfsd".toList)).length)
                                                   //> 2
-  println(balance("fdsfds()fdhs(jkf)sd".toList))  //> true
-  println(balance("".toList))                     //> true
+  println(isCouple(cutCouple(clean("fdsfds()fdhsjkfsd".toList))))
+                                                  //> true
   println(" \n ".toList.length)                   //> 3
- println(clean("\n".toList).length)               //> 0
+  println("\n".length)                            //> 1
+  println(clean("\n".toList).length)              //> 0
 
 }
