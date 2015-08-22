@@ -52,36 +52,14 @@ object Main {
   /**
    * Exercise 3
    */
+
   def countChange(money: Int, coins: List[Int]): Int = {
-
-    def filter(value: Int, list: List[Int]): List[Int] = list.filter((i: Int) => i <= value)
-
-    def truthtable(n: Int): List[List[Int]] = {
-      if (n < 1) {
-        List(List[Int]())
-      } else {
-        val subtable = truthtable(n - 1)
-        for (row <- subtable; v <- 0 until 2)
-          yield row :+ v
-      }
-    }
-
-    def sum(coin: Int, truthElement: Int): Int = if (truthElement == 1) coin else 0
-
-    def sumRecord(coins: List[Int], truthrecord: List[Int]): Int =
-      if (coins.tail.isEmpty) {
-        sum(coins.head, truthrecord.head)
-      } else {
-        sum(coins.head, truthrecord.head) + sumRecord(coins.tail, truthrecord.tail)
-      }
-
-    def processTruthTable(money: Int, coins: List[Int], truthTable: List[List[Int]]): Int =
-      if (truthTable.tail.isEmpty) {
-        sumRecord(coins, truthTable.head)
-      } else {
-        sumRecord(coins, truthTable.head) + processTruthTable(money, coins, truthTable.tail)
-      }
-    processTruthTable(money, coins, truthtable(coins.length))
+    if (money == 0)
+      1
+    else if (money > 0 && !coins.isEmpty)
+      countChange(money - coins.head, coins) + countChange(money, coins.tail)
+    else
+      0
   }
 
 }
