@@ -54,13 +54,34 @@ object Main {
    */
   def countChange(money: Int, coins: List[Int]): Int = {
 
-    def work(value: Int, list: List[Int], newList: List[Int]): List[Int] =
-      if (list.isEmpty) newList else if (list.head > value) work(value, list.tail, newList)
-      else work(value, list.tail, newList :+ list.head)
-    
+    def filter(value: Int, list: List[Int]): List[Int] = list.filter((i: Int) => i <= value)
 
-    def filterBig(value: Int, list: List[Int]): List[Int] = work(value, list, List())
-    4
+    def truthtable(n: Int): List[List[Int]] = {
+      if (n < 1) {
+        List(List[Int]())
+      } else {
+        val subtable = truthtable(n - 1)
+        for (row <- subtable; v <- 0 until 2)
+          yield row :+ v
+      }
+    }
 
+    def sum(coin: Int, truthElement: Int): Int = if (truthElement == 1) coin else 0
+
+    def sumRecord(coins: List[Int], truthrecord: List[Int]): Int =
+      if (coins.tail.isEmpty) {
+        sum(coins.head, truthrecord.head)
+      } else {
+        sum(coins.head, truthrecord.head) + sumRecord(coins.tail, truthrecord.tail)
+      }
+
+    def processTruthTable(money: Int, coins: List[Int], truthTable: List[List[Int]]): Int =
+      if (truthTable.tail.isEmpty) {
+        sumRecord(coins, truthTable.head)
+      } else {
+        sumRecord(coins, truthTable.head) + processTruthTable(money, coins, truthTable.tail)
+      }
+    processTruthTable(money, coins, truthtable(coins.length))
   }
+
 }

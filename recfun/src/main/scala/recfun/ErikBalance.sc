@@ -19,8 +19,12 @@ object ErikBalance {
   def sum(coin: Int, truthElement: Int): Int = if (truthElement == 1) coin else 0
                                                   //> sum: (coin: Int, truthElement: Int)Int
 
-  def sumRecord(coins: List[Int], truthrecord: List[Int]): Int = if (coins.tail.isEmpty) sum(coins.head, truthrecord.head) else sum(coins.head, truthrecord.head) + sumRecord(coins.tail, truthrecord.tail)
-                                                  //> sumRecord: (coins: List[Int], truthrecord: List[Int])Int
+  def sumRecord(coins: List[Int], truthrecord: List[Int]): Int =
+    if (coins.tail.isEmpty) {
+      sum(coins.head, truthrecord.head)
+    } else {
+      sum(coins.head, truthrecord.head) + sumRecord(coins.tail, truthrecord.tail)
+    }                                             //> sumRecord: (coins: List[Int], truthrecord: List[Int])Int
 
   def processTruthTable(money: Int, coins: List[Int], truthTable: List[List[Int]]): Int =
     if (truthTable.tail.isEmpty) {
@@ -33,6 +37,6 @@ object ErikBalance {
   def countChange(money: Int, coins: List[Int]): Int = processTruthTable(money, coins, truthtable(coins.length))
                                                   //> countChange: (money: Int, coins: List[Int])Int
 
-  countChange(2, List(1,1))                       //> res0: Int = 4
+  countChange(2, List(1, 0))                      //> res0: Int = 2
 
 }
