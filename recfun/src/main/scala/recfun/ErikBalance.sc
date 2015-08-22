@@ -3,34 +3,29 @@ package recfun
 object ErikBalance {
   println("Welcome to the Scala worksheet")       //> Welcome to the Scala worksheet
 
-  def charClean(one: Char): Boolean = one == '(' || one == ')'
-                                                  //> charClean: (one: Char)Boolean
+  def filter(value: Int, list: List[Int]): List[Int] = list.filter((i: Int) => i <= value)
+                                                  //> filter: (value: Int, list: List[Int])List[Int]
 
-  def clean(chars: List[Char]): List[Char] = if (chars.isEmpty) chars else if (charClean(chars.head)) { chars.head :: clean(chars.tail) } else clean(chars.tail)
-                                                  //> clean: (chars: List[Char])List[Char]
+  def truthtable(n: Int): List[List[Int]] = {
+    if (n < 1) {
+      List(List[Int]())
+    } else {
+      val subtable = truthtable(n - 1)
+      for (row <- subtable; v <- 0 until 2)
+        yield row :+ v
+    }
+  }                                               //> truthtable: (n: Int)List[List[Int]]
 
-  def isCouple(chars: List[Char]): Boolean = chars.head == '(' && chars.tail.head == ')'
-                                                  //> isCouple: (chars: List[Char])Boolean
+  def sum(coin: Int, truthElement: Int): Int = if (truthElement == 1) coin else 0
+                                                  //> sum: (coin: Int, truthElement: Int)Int
 
-  def getFirst2(chars: List[Char]): List[Char] = List(chars.head, chars.tail.head)
-                                                  //> getFirst2: (chars: List[Char])List[Char]
+  def sumRecord(coins: List[Int], truthrecord: List[Int]): Int = if (coins.tail.isEmpty) sum(coins.head, truthrecord.head) else  sum(coins.head, truthrecord.head) + sumRecord(coins.tail, truthrecord.tail)
+                                                  //> sumRecord: (coins: List[Int], truthrecord: List[Int])Int
 
-  def cutCouple(chars: List[Char]): List[Char] = if (chars.length <= 2) chars else if (isCouple(getFirst2(chars))) cutCouple(chars.tail.tail) else chars.head :: cutCouple(chars.tail)
-                                                  //> cutCouple: (chars: List[Char])List[Char]
+  def countChange(money: Int, coins: List[Int]): Int = 3
+                                                  //> countChange: (money: Int, coins: List[Int])Int
 
-  println(clean("fd\nsfdsfdhsjkfsd".toList).length)
-                                                  //> 0
-  println("\n".length)                            //> 1
+	println(sumRecord(List(2,5),List(1,0)) )  //> 2
 
-  println(cutCouple(clean("fd\nsfds()fdhsjkfsd".toList)).length)
-                                                  //> 2
-
-  println(cutCouple(clean("fdsfds()fdhsjkfsd".toList)).length)
-                                                  //> 2
-  println(isCouple(cutCouple(clean("fdsfds()fdhsjkfsd".toList))))
-                                                  //> true
-  println(" \n ".toList.length)                   //> 3
-  println("\n".length)                            //> 1
-  println(clean("\n".toList).length)              //> 0
 
 }

@@ -52,5 +52,15 @@ object Main {
   /**
    * Exercise 3
    */
-  def countChange(money: Int, coins: List[Int]): Int = ???
+  def countChange(money: Int, coins: List[Int]): Int = {
+
+    def work(value: Int, list: List[Int], newList: List[Int]): List[Int] =
+      if (list.isEmpty) newList else if (list.head > value) work(value, list.tail, newList)
+      else work(value, list.tail, newList :+ list.head)
+    
+
+    def filterBig(value: Int, list: List[Int]): List[Int] = work(value, list, List())
+    4
+
+  }
 }
