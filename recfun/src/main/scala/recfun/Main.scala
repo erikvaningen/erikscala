@@ -64,12 +64,10 @@ object Main {
     println(money + " " + coins)
 
     if (money == 0) {
-      println("-------------- point! ")
       1
     } else if (money > 0 && !coins.isEmpty) {
       countChange(money - coins.head, coins) + countChange(money, coins.tail)
     } else {
-      println("-------------- 0! ")
       0
     }
   }

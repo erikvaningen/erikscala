@@ -14,6 +14,9 @@ object ErikBalance {
   def product(f: Int => Int)(a: Int, b: Int): Int = mapReduce(f, (a, b) => a * b, 1)(a, b)
                                                   //> product: (f: Int => Int)(a: Int, b: Int)Int
 
-  product(x => x * x)(3, 4)                       //> res0: Int = 144
+
+
+
+  product(x => x * x)(2, 4)                       //> res0: Int = 576
 
 }
