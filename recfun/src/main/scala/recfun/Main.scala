@@ -18,7 +18,9 @@ object Main {
     // precondition
     if (c < 0 || r < 0) throw new IllegalArgumentException
     //  logic
-    if (c == 0 || r == 0 || r == c) 1 else pascal(c - 1, r - 1) + pascal(c, r - 1)
+    if (c == 0 || r == 0 || r == c) 1
+    else
+      pascal(c - 1, r - 1) + pascal(c, r - 1)
 
   }
 
@@ -27,8 +29,6 @@ object Main {
    */
 
   def balance(chars: List[Char]): Boolean = {
-    // precondition
-    if (chars == null) throw new IllegalArgumentException
 
     //logic
     def charClean(one: Char): Boolean = one == '(' || one == ')'
@@ -43,10 +43,17 @@ object Main {
 
     def getFirst2(chars: List[Char]): List[Char] = List(chars.head, chars.tail.head)
 
-    def cutCouple(chars: List[Char]): List[Char] = if (chars.length <= 2) chars else if (isCouple(getFirst2(chars))) cutCouple(chars.tail.tail) else chars.head :: cutCouple(chars.tail)
+    def cutCouple(chars: List[Char]): List[Char] =
+      if (chars.length <= 2) chars
+      else if (isCouple(getFirst2(chars)))
+        cutCouple(chars.tail.tail)
+      else
+        chars.head :: cutCouple(chars.tail)
 
     chars.isEmpty || (
-      if (chars.length == 1) !charClean(chars.head) else isCouple(cutCouple(clean(chars))))
+      if (chars.length == 1) !charClean(chars.head)
+      else
+        isCouple(cutCouple(clean(chars))))
   }
 
   /**
@@ -54,12 +61,17 @@ object Main {
    */
 
   def countChange(money: Int, coins: List[Int]): Int = {
-    if (money == 0)
+    println(money + " " + coins)
+
+    if (money == 0) {
+      println("-------------- point! ")
       1
-    else if (money > 0 && !coins.isEmpty)
+    } else if (money > 0 && !coins.isEmpty) {
       countChange(money - coins.head, coins) + countChange(money, coins.tail)
-    else
+    } else {
+      println("-------------- 0! ")
       0
+    }
   }
 
 }
