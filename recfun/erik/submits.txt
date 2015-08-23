@@ -1,0 +1,17 @@
+> submit erikvaningen@gmail.com 
+[info] Packaging C:\Users\Erik\git\erikscala\recfun\target\scala-2.11\progfun-recfun_2.11-1.0.0.jar ...
+[info] Done packaging.
+[info] Compiling 2 Scala sources to C:\Users\Erik\git\erikscala\recfun\target\scala-2.11\classes...
+[info] Connecting to coursera. Obtaining challenge...
+[info] Computing challenge response...
+[info] Submitting solution...
+[success]
+[success]  Your code was successfully submitted: Your submission has been accepted and will be graded shortly.
+[success]  NOTE:
+[success]    - The final grade is calculated based on the score you get for this assignment
+[success]      and the number of days that this submission is after the soft deadline. If your
+[success]      final score does not match please make sure to check the exact deadlines.
+[success]    - For each assignment there is a limit on the maximum number of attempts you can make.
+[success]
+[success] Total time: 30 s, completed 23-aug-2015 8:36:40
+>
