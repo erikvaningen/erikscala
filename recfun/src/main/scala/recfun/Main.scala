@@ -39,7 +39,7 @@ object Main {
       else
         clean(chars.tail)
 
-    def isCouple(chars: List[Char]): Boolean = chars.head == '(' && chars.tail.head == ')'
+    def isCouple(chars: List[Char]): Boolean = chars.length == 2 && chars.head == '(' && chars.tail.head == ')'
 
     def getFirst2(chars: List[Char]): List[Char] = List(chars.head, chars.tail.head)
 
@@ -50,10 +50,11 @@ object Main {
       else
         chars.head :: cutCouple(chars.tail)
 
-    chars.isEmpty || (
-      if (chars.length == 1) !charClean(chars.head)
-      else
-        isCouple(cutCouple(clean(chars))))
+    chars.isEmpty ||
+      (chars.length == 1 && !charClean(chars.head)) ||
+      clean(chars).isEmpty ||
+      (chars.length > 1 && isCouple(cutCouple(clean(chars))))
+
   }
 
   /**
