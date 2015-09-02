@@ -53,7 +53,7 @@ object Main {
     chars.isEmpty ||
       (chars.length == 1 && !charClean(chars.head)) ||
       clean(chars).isEmpty ||
-      (chars.length > 1 && isCouple(cutCouple(clean(chars))))
+      (chars.length > 1 && isCouple(cutCouple(cutCouple(clean(chars)))))
 
   }
 
