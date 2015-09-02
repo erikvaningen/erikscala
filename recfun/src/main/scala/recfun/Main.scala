@@ -43,17 +43,21 @@ object Main {
 
     def getFirst2(chars: List[Char]): List[Char] = List(chars.head, chars.tail.head)
 
-    def cutCouple(chars: List[Char]): List[Char] =
-      if (chars.length <= 2) chars
-      else if (isCouple(getFirst2(chars)))
-        cutCouple(chars.tail.tail)
+    def cutCouple(chars: List[Char], depth: Int): List[Char] =
+      if (chars.isEmpty || depth == 0) chars
+      else if (chars.length == 2 && isCouple(chars))
+        List()
+      else if (chars.length > 2 && isCouple(getFirst2(chars)))
+        cutCouple(chars.tail.tail, depth)
+      else if (chars.length == 1)
+        chars
       else
-        chars.head :: cutCouple(chars.tail)
+        cutCouple(chars.head :: cutCouple(chars.tail, depth), depth - 1)
 
     chars.isEmpty ||
       (chars.length == 1 && !charClean(chars.head)) ||
       clean(chars).isEmpty ||
-      (chars.length > 1 && isCouple(cutCouple(cutCouple(clean(chars)))))
+      (chars.length > 1 && cutCouple(clean(chars), 4).length == 0)
 
   }
 
