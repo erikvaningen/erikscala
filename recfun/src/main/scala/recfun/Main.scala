@@ -62,7 +62,6 @@ object Main {
    */
 
   def countChange(money: Int, coins: List[Int]): Int = {
-    println(money + " " + coins)
 
     if (money == 0) {
       1
