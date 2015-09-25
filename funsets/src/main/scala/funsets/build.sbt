@@ -1,6 +1,6 @@
 submitProjectName := "funsets"
 
-scalaVersion := "2.11.5"
+scalaVersion := "2.11.7"
 
 scalacOptions ++= Seq(
   "-deprecation",
@@ -14,6 +14,10 @@ fork := true
 javaOptions += "-Xmx2G"
 
 parallelExecution in Test := false
+
+
+
+
 
 
 // See documentation in ProgFunBuild.scala
